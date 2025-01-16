@@ -7,6 +7,15 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+
+// Optional configuration
+const options = {
+  enableVibrateFallback: true,
+  ignoreAndroidSystemSettings: false,
+};
+
+
 export default function App() {
   const [diceValue, setDiceValue] = useState(1);
   const [diceColor1, setDiceColor1] = useState('lightblue');
@@ -72,6 +81,7 @@ export default function App() {
   }
 
   const diceRoll = () => {
+    ReactNativeHapticFeedback.trigger("impactLight", options);
     let roll = 1;
 
     for (let i = 1; i < 7; i++) {
@@ -83,6 +93,7 @@ export default function App() {
     setValue(roll);
     
   };
+
 
   return (
     <SafeAreaView style={styles.safeArea}>
